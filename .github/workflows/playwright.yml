@@ -4,8 +4,21 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      test_environment:
+        description: Environment to test
+        required: true
+        type: choice
+        default: STAGE
+        options:
+          - DEV
+          - STAGE
+          - QA
 jobs:
   test:
+    env:
+      TEST_ENV: ${{ inputs.test_environment || 'STAGE' }}
     timeout-minutes: 60
     runs-on: windows-latest
     steps:
