@@ -9,13 +9,13 @@ type myfixtures = {
 
 export const test = base.extend<myfixtures>({
 
-    loginPage:async({page}, use) => {
-        const loginPage = new LoginPage(page);
+    loginPage:async({page}, use, testInfo) => {
+        const loginPage = new LoginPage(page, testInfo);
         await use(loginPage);
     },
 
-    dashboard: async({page}, use) => {
-        const dashboard = new Dashboard(page);
+    dashboard: async({page}, use, testInfo) => {
+        const dashboard = new Dashboard(page, testInfo);
         await use(dashboard);
     },
 

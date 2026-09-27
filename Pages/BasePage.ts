@@ -4,30 +4,21 @@ import {Page, TestInfo} from "@playwright/test";
 export class BasePage {
 
     private readonly page:Page;
+    private readonly testInfo:TestInfo;
     private actionCounter = 0;
 
-    constructor(page:Page){
+    constructor(page:Page, testInfo:TestInfo){
         this.page=page;
+        this.testInfo=testInfo;
     }
 
-    async takeAutoScreenshotOriginal(actionName: string, testInfo: TestInfo): Promise<void> {
+    async takeAutoScreenshot(actionName: string): Promise<void> {
         this.actionCounter++;
-        const screenshot = await this.page.screenshot({ fullPage: false });
-        await testInfo.attach(`${this.actionCounter}-${actionName}`, {
+        const screenshot = await this.page.screenshot({fullPage: false});
+        await this.testInfo.attach(`${this.actionCounter}-${actionName}`, {
             body: screenshot,
-            contentType: 'image/png',
+            contentType: "image/png",
         });
     }
-
-
-     async takeAutoScreenshot(actionName: string): Promise<void> {
-        this.actionCounter++;
-        const screenshot = await this.page.screenshot({ fullPage: false });
-        await TestInfo.attach(`${this.actionCounter}-${actionName}`, {
-            body: screenshot,
-            contentType: 'image/png',
-        });
-    }
-
 }
 
