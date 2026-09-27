@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 
-const testEnvironment = (process.env.TEST_ENV ?? 'STAGE').toUpperCase();
+const testEnvironment = (process.env.TEST_ENV ?? 'QA').toUpperCase();
 const environmentFiles: Record<string, string> = {
   DEV: '.env.DEV',
   STAGE: '.env.STAGE',
