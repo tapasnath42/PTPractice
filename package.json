@@ -5,11 +5,14 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
-    "@types/node": "^26.6.3"
+    "@types/node": "^26.6.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   },
   "scripts": {
     "test:dev": "TEST_ENV=DEV playwright test",
     "test:stage": "TEST_ENV=STAGE playwright test",
-    "test:qa": "TEST_ENV=QA playwright test"
+    "test:qa": "TEST_ENV=QA playwright test",
+    "start:program": "ts-node Programs/aaabbbccc.ts"
   }
 }
