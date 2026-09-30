@@ -10,7 +10,7 @@ on:
         description: Environment to test
         required: true
         type: choice
-        default: STAGE
+        default: QA
         options:
           - DEV
           - STAGE
@@ -25,8 +25,8 @@ jobs:
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
     steps:
-    - uses: actions/checkout@v6
-    - uses: actions/setup-node@v6
+    - uses: actions/checkout@v7
+    - uses: actions/setup-node@v7
       with:
         node-version: lts/*
     - name: Install dependencies
@@ -35,11 +35,11 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run Playwright tests
-      run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+      run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --reporter=blob
 
     - name: Upload blob report to GitHub Actions Artifacts
       if: ${{ !cancelled() }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: blob-report-${{ matrix.shardIndex }}
         path: blob-report
@@ -60,7 +60,7 @@ jobs:
       run: npm ci
 
     - name: Download blob reports from GitHub Actions Artifacts
-      uses: actions/download-artifact@v5
+      uses: actions/download-artifact@v7
       with:
         path: all-blob-reports
         pattern: blob-report-*
@@ -70,7 +70,7 @@ jobs:
       run: npx playwright merge-reports --reporter html ./all-blob-reports
 
     - name: Upload HTML report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: html-report--attempt-${{ github.run_attempt }}
         path: playwright-report
