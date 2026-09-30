@@ -14,4 +14,3 @@ test("Login", async ({page, loginPage}) => {
     await loginPage.loginToApplication(process.env.loginsusername as string, process.env.loginpassword as string);
     await page.waitForTimeout(3000);
 });
-
