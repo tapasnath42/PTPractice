@@ -1,4 +1,4 @@
-import {test, expect} from "../Fixtures/LoginFixture";
+import {test, expect} from "../Fixtures/ApplicationFixtures";
 
 test("successful login hides the login form", async ({loggedInPage}) => {
     await expect(loggedInPage.getByPlaceholder("Enter username")).toBeHidden();

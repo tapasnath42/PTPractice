@@ -37,4 +37,4 @@ export const test = base.extend<myfixtures>({
 
 });
 
-export {expect} from "@playwright/test";
+export {expect, Locator} from "@playwright/test";

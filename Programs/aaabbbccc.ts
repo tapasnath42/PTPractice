@@ -1,17 +1,26 @@
-let str = "a3b3c4d2";
-let newstr = "";
-let i=0;
+// largest consecutive number
 
-let char = 0;
-let repeat = 1;
+let num = [1, 2, 3, 4, 200, 201, 300, 301, 302];
+let current = [num[0]];
+let longest = current;
 
-while(i<str.length/2){
-    for(let i=0; i<Number(str[repeat]); i++){
-        newstr +=str[char];
+for (let i = 1; i < num.length; i++) {
+
+    if (num[i] === num[i - 1] + 1) {
+        current.push(num[i]);
+    } else {
+        if (current.length > longest.length) {
+            longest = current;
+        }
+
+        current = [num[i]];
+
     }
-    char = char +2;
-    repeat = repeat +2;
-    i++;
 }
 
-console.log(newstr);
+if (current.length > longest.length) {
+    longest = current;
+}
+
+console.log(longest);
+

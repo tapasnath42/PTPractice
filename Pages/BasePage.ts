@@ -1,10 +1,9 @@
-import {Page, TestInfo} from "@playwright/test";
-
+import {Page, Locator, TestInfo} from "@playwright/test";
 
 export class BasePage {
 
-    private readonly page:Page;
-    private readonly testInfo:TestInfo;
+    protected readonly page:Page;
+    protected readonly testInfo:TestInfo;
     private actionCounter = 0;
 
     constructor(page:Page, testInfo:TestInfo){
@@ -20,5 +19,11 @@ export class BasePage {
             contentType: "image/png",
         });
     }
+
+    async click(selector: string | Locator): Promise<void> {
+        const element = typeof selector === "string" ? this.page.locator(selector) : selector;
+        await element.click();
+    }
+
 }
 

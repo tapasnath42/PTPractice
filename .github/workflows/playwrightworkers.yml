@@ -1,0 +1,42 @@
+name: Tests with chromium
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      test_environment:
+        description: Environment to test
+        required: true
+        type: choice
+        default: QA
+        options:
+          - DEV
+          - STAGE
+          - QA
+jobs:
+  playwright-tests:
+    timeout-minutes: 60
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v7
+    - uses: actions/setup-node@v7
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+
+    - name: Run Playwright tests
+      #run: npx playwright test --workers=2
+      run :  npx playwright test ../tests/test.spec.ts --workers=1
+
+    - name: Upload HTML report
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: html-report-${{ github.run_attempt }}
+        path: playwright-report
+        retention-days: 14

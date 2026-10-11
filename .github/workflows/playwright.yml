@@ -1,4 +1,4 @@
-name: Tests with chromium
+name: Playwright tests with shard
 on:
   push:
     branches: [ main, master ]
@@ -36,7 +36,8 @@ jobs:
 
     - name: Run Playwright tests
       run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --reporter=blob
-
+      #run: npx playwright test --workers=4
+      
     - name: Upload blob report to GitHub Actions Artifacts
       if: ${{ !cancelled() }}
       uses: actions/upload-artifact@v7
