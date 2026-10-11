@@ -19,6 +19,8 @@ jobs:
   playwright-tests:
     timeout-minutes: 60
     runs-on: windows-latest
+    environment:
+      name: ${{ inputs.test_environment || 'QA' }}
     strategy:
       fail-fast: false
       matrix:
@@ -36,6 +38,10 @@ jobs:
 
     - name: Run Playwright tests
       run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --reporter=blob
+      env:
+        TEST_ENV: ${{ inputs.test_environment || 'QA' }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
       #run: npx playwright test --workers=4
       
     - name: Upload blob report to GitHub Actions Artifacts
