@@ -32,6 +32,7 @@ export class LoginPage extends BasePage{
     async sampleTemplate(){
         await this.page.locator("").click();
         this.click(this.username);
+        this.click("");
     }
 
 

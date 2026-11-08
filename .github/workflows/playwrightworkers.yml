@@ -32,8 +32,7 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run Playwright tests
-      #run: npx playwright test --workers=2
-      run :  npx playwright test ../tests/testwithsecret.spec.ts --workers=1
+      run: npm run test:secret -- --workers=1
       env:
         TEST_ENV: ${{ inputs.test_environment || 'QA' }}
         USERNAME: ${{ secrets.USERNAME }}

@@ -1,0 +1,10 @@
+
+  {
+    "employeeId": "SJ011MS",
+    "name": "Smith Jones",
+    "skills": ["Python", "JavaScript", "SQL"],
+    "address": {
+      "street": "123 Main St",
+      "city": "Boston"
+    }
+  }

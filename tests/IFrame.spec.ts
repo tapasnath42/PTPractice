@@ -1,6 +1,4 @@
-
 import {test, expect} from "../Fixtures/iframeFixture";
-
 
 test.skip("IFR_001", async({page, iframe})=>{
 

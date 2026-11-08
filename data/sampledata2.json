@@ -1,0 +1,47 @@
+[
+  {
+    "employeeId": "SJ011MS",
+    "name": "Smith Jones",
+    "skills": ["Python", "JavaScript", "SQL"],
+    "address": {
+      "street": "123 Main St",
+      "city": "Boston"
+    }
+  },
+  {
+    "employeeId": "AM024LK",
+    "name": "Alice Miller",
+    "skills": ["Java", "C++", "AWS"],
+    "address": {
+      "street": "456 Oak Ave",
+      "city": "Chicago"
+    }
+  },
+  {
+    "employeeId": "DR078WP",
+    "name": "David Ross",
+    "skills": ["Python", "Docker", "Kubernetes"],
+    "address": {
+      "street": "789 Pine Rd",
+      "city": "Austin"
+    }
+  },
+  {
+    "employeeId": "EC042TN",
+    "name": "Elena Cruz",
+    "skills": ["HTML", "CSS", "TypeScript", "React"],
+    "address": {
+      "street": "321 Elm St",
+      "city": "Seattle"
+    }
+  },
+  {
+    "employeeId": "RK095MS",
+    "name": "Raj Patel",
+    "skills": ["SQL", "Tableau", "PowerBI", "R"],
+    "address": {
+      "street": "654 Maple Dr",
+      "city": "Denver"
+    }
+  }
+]
